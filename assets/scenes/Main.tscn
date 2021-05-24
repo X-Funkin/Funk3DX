@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scenes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/scenes/Stage.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="VisualShader" id=2]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -232, 75 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 
 [node name="Main" type="Spatial"]
 
@@ -14,3 +49,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, 0, 0 )
+
+[node name="Stage" parent="." instance=ExtResource( 3 )]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87143, 2.8225, 0 )
+material = SubResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00068, 2.8225, 0 )
+material = SubResource( 3 )
