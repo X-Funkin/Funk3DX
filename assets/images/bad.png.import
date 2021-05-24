@@ -2,12 +2,12 @@
 
 importer="image"
 type="Image"
-path="res://.godot/imported/bad.png-79d195a1f261aa0f51be0690763a58cd.image"
+path="res://.import/bad.png-79d195a1f261aa0f51be0690763a58cd.image"
 
 [deps]
 
 source_file="res://assets/images/bad.png"
-dest_files=[ "res://.godot/imported/bad.png-79d195a1f261aa0f51be0690763a58cd.image" ]
+dest_files=[ "res://.import/bad.png-79d195a1f261aa0f51be0690763a58cd.image" ]
 
 [params]
 
