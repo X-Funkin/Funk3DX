@@ -58,7 +58,7 @@ shadow_contact = 0.93
 omni_range = 17.782
 
 [node name="3d fnf buildings" parent="Stage" index="4"]
-transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 6.513, -58.482 )
+transform = Transform( 35.9056, 0, 0, 0, 35.9056, 0, 0, 0, 35.9056, 0, -4.79622, -69.3358 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87143, 2.8225, 0 )
@@ -71,3 +71,4 @@ visible = false
 material = SubResource( 3 )
 
 [editable path="Stage"]
+[editable path="Stage/3d fnf train and stuff"]

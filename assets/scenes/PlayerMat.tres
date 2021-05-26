@@ -13,7 +13,7 @@ operator = 2
 constant = Vector3( 1, 1, 1 )
 
 [sub_resource type="VisualShaderNodeScalarConstant" id=4]
-constant = 1.0
+constant = 0.2
 
 [sub_resource type="VisualShaderNodeVectorOp" id=6]
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 10, 10, 10 ) ]
@@ -39,7 +39,7 @@ void fragment() {
 	float n_out2p1 = tex_frg_2_read.a;
 
 // Scalar:5
-	float n_out5p0 = 1.000000;
+	float n_out5p0 = 0.200000;
 
 // Output:0
 	ALBEDO = n_out2p0;
@@ -53,7 +53,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -265.669, -57.2337 )
+graph_offset = Vector2( -166.669, 431.766 )
 modes/cull = 2
 modes/depth_draw = 3
 nodes/fragment/2/node = SubResource( 1 )
