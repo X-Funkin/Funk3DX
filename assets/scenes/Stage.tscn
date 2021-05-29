@@ -5,20 +5,23 @@
 [ext_resource path="res://assets/scenes/Partner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/models/3d fnf train and stuff.glb" type="PackedScene" id=5]
 
-[sub_resource type="PlaneMesh" id=8]
+[sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 1 )
 size = Vector2( 30, 30 )
 
-[sub_resource type="ProceduralSky" id=9]
+[sub_resource type="ProceduralSky" id=2]
 sky_top_color = Color( 0.0352941, 0.00392157, 0.0352941, 1 )
 sky_horizon_color = Color( 0.419608, 0.0588235, 0.423529, 1 )
 ground_bottom_color = Color( 0.211765, 0.156863, 0.211765, 1 )
 ground_horizon_color = Color( 0.266667, 0.00392157, 0.235294, 1 )
-sun_latitude = -12.17
+sun_color = Color( 1, 0.72549, 0, 1 )
+sun_latitude = 27.55
+sun_longitude = 14.9
+sun_angle_max = 13.1
 
-[sub_resource type="Environment" id=10]
+[sub_resource type="Environment" id=3]
 background_mode = 2
-background_sky = SubResource( 9 )
+background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.0
 ss_reflections_enabled = true
@@ -26,7 +29,7 @@ glow_enabled = true
 glow_blend_mode = 1
 glow_bicubic_upscale = true
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=4]
 emission_enabled = true
 emission = Color( 1, 1, 1, 1 )
 emission_energy = 1.0
@@ -37,7 +40,7 @@ emission_on_uv2 = false
 
 [node name="CSGMesh" type="CSGMesh" parent="."]
 visible = false
-mesh = SubResource( 8 )
+mesh = SubResource( 1 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.50306, 4.8644 )
@@ -47,15 +50,21 @@ omni_range = 40.0312
 omni_shadow_mode = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 10 )
+environment = SubResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37773, 0 )
 visible = false
-material = SubResource( 11 )
+material = SubResource( 4 )
 
 [node name="3d fnf buildings" parent="." instance=ExtResource( 3 )]
 transform = Transform( 33.4104, 0, 0, 0, 33.4104, 0, 0, 0, 33.4104, 0, 5.75398, -56.1448 )
+
+[node name="3d fnf buildings2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 27.3649, 0, -19.1682, 0, 33.4104, 0, 19.1682, 0, 27.3649, 107.515, 5.75398, -39.6032 )
+
+[node name="3d fnf buildings3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 24.3248, 0, 22.9033, 0, 33.4104, 0, -22.9033, 0, 24.3248, -113.121, 5.75397, -54.4572 )
 
 [node name="Partner" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65581 )
