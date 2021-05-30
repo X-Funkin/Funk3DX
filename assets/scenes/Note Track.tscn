@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/images/NOTE_assets.png" type="Texture" id=1]
+[ext_resource path="res://assets/scripts/CreateNotes.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 310, 235, 153, 157 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 0, 235, 157, 153 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 784, 232, 157, 153 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 157, 235, 153, 157 )
+
+[node name="Note Track" type="Spatial"]
+
+[node name="Note Left" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.335, 0, 0 )
+texture = SubResource( 1 )
+
+[node name="Note Down" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.785, 0, 0 )
+texture = SubResource( 2 )
+
+[node name="Note Up" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.785, 0, 0 )
+texture = SubResource( 3 )
+
+[node name="Note Right" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.335, 0, 0 )
+texture = SubResource( 4 )
+
+[node name="Note Transforms" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0.001 )
+
+[node name="Notes" type="Position3D" parent="Note Transforms" groups=[
+"Note Tracks",
+"Song Time Recievers",
+]]
+script = ExtResource( 2 )

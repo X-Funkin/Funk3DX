@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Blammed_Voices.ogg-6ecb19102dd2357656e0ad56cf243707.oggstr"
+
+[deps]
+
+source_file="res://assets/music/Blammed_Voices.ogg"
+dest_files=[ "res://.import/Blammed_Voices.ogg-6ecb19102dd2357656e0ad56cf243707.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
