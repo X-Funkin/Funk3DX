@@ -14,11 +14,21 @@ func _ready():
 	for noteSections in songData["song"]["notes"]:
 		if noteSections["mustHitSection"]:
 			for note in noteSections["sectionNotes"]:
-				get_tree().call_group("Note Tracks", "createNote", note)
+				if note[1] > 3:
+					get_tree().call_group("Enemy Track", "generateNote", note)
+					continue
+				get_tree().call_group("Player Track", "generateNote", note)
+				
+			continue
+		for note in noteSections["sectionNotes"]:
+			get_tree().call_group("Enemy Track", "generateNote", note)
+	
+	
 	$Instrumentals.play()
 	$"Player Voice".play()
 
-
+func _input(event):
+	get_tree().call_group("Player Input Reciever", "recieve_player_input", event)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

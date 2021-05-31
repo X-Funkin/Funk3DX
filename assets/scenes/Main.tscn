@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scenes/Enemy.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/music/Blammed_Voices.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/scripts/Instrumentals.gd" type="Script" id=8]
 [ext_resource path="res://assets/scripts/Main.gd" type="Script" id=9]
+[ext_resource path="res://assets/models/3d fnf buildings.gd" type="Script" id=10]
+[ext_resource path="res://assets/scenes/Cube022.gd" type="Script" id=11]
 
 [sub_resource type="SpatialMaterial" id=1]
 emission_enabled = true
@@ -67,14 +69,31 @@ shadow_bias = 0.0
 shadow_contact = 0.93
 omni_range = 35.3842
 
-[node name="3d fnf buildings" parent="Stage" index="4"]
+[node name="3d fnf buildings" parent="Stage" index="4" groups=[
+"Player Input Reciever",
+]]
 transform = Transform( 35.9056, 0, 0, 0, 35.9056, 0, 0, 0, 35.9056, 0, -4.79622, -69.3358 )
+script = ExtResource( 10 )
+
+[node name="Cube022" parent="Stage/3d fnf buildings" index="0" groups=[
+"Player Input Reciever",
+]]
+script = ExtResource( 11 )
 
 [node name="Cube003" parent="Stage/3d fnf train and stuff" index="7"]
 material/0 = ExtResource( 4 )
 
+[node name="Cube004" parent="Stage/3d fnf train and stuff" index="8"]
+visible = false
+
 [node name="Cube005" parent="Stage/3d fnf train and stuff" index="9"]
 material/0 = ExtResource( 4 )
+
+[node name="Cube006" parent="Stage/3d fnf train and stuff" index="10"]
+visible = false
+
+[node name="Cube007" parent="Stage/3d fnf train and stuff" index="11"]
+visible = false
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87143, 2.8225, 0 )
@@ -87,9 +106,7 @@ visible = false
 material = SubResource( 3 )
 
 [node name="UI" parent="." instance=ExtResource( 5 )]
-
-[node name="Note Track" parent="UI" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.573, 6.897, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.815476 )
 
 [node name="Instrumentals" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
@@ -97,6 +114,7 @@ bus = "Inst"
 script = ExtResource( 8 )
 
 [node name="Enemy Voice" type="AudioStreamPlayer" parent="."]
+bus = "Enemy Voice"
 
 [node name="Player Voice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
@@ -104,5 +122,6 @@ bus = "Player Voice"
 
 [editable path="Player"]
 [editable path="Stage"]
+[editable path="Stage/3d fnf buildings"]
 [editable path="Stage/3d fnf train and stuff"]
 [editable path="UI"]

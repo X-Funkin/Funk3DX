@@ -12,4 +12,5 @@ region = Rect2( 630, 232, 154, 157 )
 script = ExtResource( 2 )
 
 [node name="Left Sprite" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999848, 0.0174524, 0, -0.0174524, 0.999848, 0, 0, 0 )
 texture = SubResource( 1 )

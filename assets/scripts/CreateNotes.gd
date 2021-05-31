@@ -15,12 +15,12 @@ func _ready():
 	noteSpeed = get_parent().scale.y
 
 func createNote(noteData):
-	print("creating note ", noteData)
-	var noteType = int(noteData[1])
-	print(noteType)
+#	print("creating note ", noteData)
+	var noteType = int(noteData[1])%4
+#	print(noteType)
 	match noteType:
 		0:
-			print("trying")
+#			print("trying")
 			var noteInst = LNote.instance()
 			noteInst.add_to_group("Notes")
 			noteInst.add_to_group("Left Notes")
@@ -28,7 +28,7 @@ func createNote(noteData):
 			noteInst.translation.y = -noteData[0]/1000.0
 			noteInst.translation.x = -2.335
 #			noteInst.scale.y = 1/10.0
-			print("added note", noteData)
+#			print("added note", noteData)
 			#print(noteInst.transform)
 			add_child(noteInst)
 		1:
@@ -67,6 +67,8 @@ func createNotes(noteSection):
 			createNote(note)
 			
 func recieve_songtime(t):
+	if t<time:
+		print("STUTTER: ", time-t)
 	time = t
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
