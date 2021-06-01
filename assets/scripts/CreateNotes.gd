@@ -18,6 +18,7 @@ func createNote(noteData):
 #	print("creating note ", noteData)
 	var noteType = int(noteData[1])%4
 #	print(noteType)
+	var player_track = get_parent().get_parent().player_track
 	match noteType:
 		0:
 #			print("trying")
@@ -27,6 +28,7 @@ func createNote(noteData):
 			noteInst.hit_time = noteData[0]
 			noteInst.translation.y = -noteData[0]/1000.0
 			noteInst.translation.x = -2.335
+			noteInst.player_note = player_track
 #			noteInst.scale.y = 1/10.0
 #			print("added note", noteData)
 			#print(noteInst.transform)
@@ -36,6 +38,8 @@ func createNote(noteData):
 			noteInst.add_to_group("Notes")
 			noteInst.add_to_group("Down Notes")
 			noteInst.hit_time = noteData[0]
+			noteInst.note_type = 1
+			noteInst.player_note = player_track
 			noteInst.translation.y = -noteData[0]/1000.0
 			noteInst.translation.x = -0.785
 #			noteInst.scale.y = 1/10.0
@@ -45,6 +49,8 @@ func createNote(noteData):
 			noteInst.add_to_group("Notes")
 			noteInst.add_to_group("Up Notes")
 			noteInst.hit_time = noteData[0]
+			noteInst.note_type = 2
+			noteInst.player_note = player_track
 			noteInst.translation.y = -noteData[0]/1000.0
 			noteInst.translation.x = 0.785
 #			noteInst.scale.y = 1/10.0
@@ -54,6 +60,8 @@ func createNote(noteData):
 			noteInst.add_to_group("Notes")
 			noteInst.add_to_group("Right Notes")
 			noteInst.hit_time = noteData[0]
+			noteInst.note_type = 3
+			noteInst.player_note = player_track
 			noteInst.translation.y = -noteData[0]/1000.0
 			noteInst.translation.x = 2.335
 #			noteInst.scale.y = 1/10.0

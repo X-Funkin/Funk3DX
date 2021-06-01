@@ -47,5 +47,5 @@ func _process(delta):
 		print("FRAME TIME ARRAY: ", frametime_arr)
 		print("\n\n")
 	song_time = current_time
-	get_tree().call_group("Song Time Recievers", "recieve_songtime",song_time-15.0/1000.0)
+	get_tree().call_group("Song Time Recievers", "recieve_songtime",song_time-15.5/1000.0)
 #	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scenes/Enemy.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://assets/models/3d fnf buildings.gd" type="Script" id=10]
 [ext_resource path="res://assets/scenes/Cube022.gd" type="Script" id=11]
+[ext_resource path="res://assets/scenes/Label.gd" type="Script" id=12]
 
 [sub_resource type="SpatialMaterial" id=1]
 emission_enabled = true
@@ -119,6 +120,34 @@ bus = "Enemy Voice"
 [node name="Player Voice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 bus = "Player Voice"
+
+[node name="Screen UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Screen UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Screen UI/Control" groups=[
+"Player Hit Receiver",
+"Player Miss Receiver",
+]]
+anchor_left = -0.836509
+anchor_top = 0.371257
+anchor_right = -0.576196
+anchor_bottom = 0.682924
+margin_left = 41.5599
+margin_bottom = -34.0
+rect_scale = Vector2( 6, 6 )
+size_flags_stretch_ratio = 0.0
+text = "test"
+align = 2
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [editable path="Player"]
 [editable path="Stage"]

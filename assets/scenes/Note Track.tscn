@@ -52,7 +52,7 @@ texture = SubResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Note Transforms" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0.001 )
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0.001 )
 
 [node name="Notes" type="Position3D" parent="Note Transforms" groups=[
 "Note Tracks",

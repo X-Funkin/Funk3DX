@@ -7,6 +7,7 @@ extends Spatial
 
 
 # Called when the node enters the scene tree for the first time.
+export(bool) var player_track
 func _ready():
 	pass # Replace with function body.
 func recieve_player_input(event):
