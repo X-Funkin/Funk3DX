@@ -7,15 +7,23 @@ extends Sprite3D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
+func _ready():
+	pass
+	
 
 func input(event):
-	if event.is_action_pressed("up_note"):
-		modulate = Color("00ff00")
-	if event.is_action_released("up_note"):
-		modulate = Color("ffffff")
+	if event.is_action_pressed("up_note") or event.is_action_pressed("up_note_2"):
+		$"Note Up Animation".play("Up Press")
+		#modulate = Color("ff00ff")
+	if event.is_action_released("up_note") or event.is_action_released("up_note_2"):
+		$"Note Up Animation".stop()
+		$"Note Up Animation".play("Up Default")
+		#modulate = Color("ffffff")
+
+func note_hit():
+	$"Note Up Animation".stop()
+	$"Note Up Animation".play("Up Confirm")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -8,6 +8,7 @@ extends Spatial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	var f = File.new()
 	f.open("res://assets/music/blammed-hard.json", File.READ)
 	var songData = JSON.parse(f.get_as_text()).result
@@ -53,8 +54,9 @@ func recieve_songtime(t):
 			continue
 		break
 func _input(event):
-	if event.is_action_pressed("left_note_2") || event.is_action_pressed("down_note_2") || event.is_action_pressed("up_note_2") || event.is_action_pressed("right_note_2"):
+	if event.is_action_pressed("left_note_2") || event.is_action_pressed("down_note_2") || event.is_action_pressed("up_note_2") || event.is_action_pressed("right_note_2") ||event.is_action_released("left_note_2") || event.is_action_released("down_note_2") || event.is_action_released("up_note_2") || event.is_action_released("right_note_2"):
 		print("ENEMY INPUT ", event, "ITME IS ", -15.5+1000.0*($Instrumentals.get_playback_position()+AudioServer.get_time_since_last_mix()-AudioServer.get_output_latency()))
+		print("ENEMY BUTTON DOWN IS ", event.pressed)
 		get_tree().call_group("Enemy Input Recievers", "recieve_enemy_input", event)
 		
 		return 0

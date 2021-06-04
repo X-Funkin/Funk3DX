@@ -1,16 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scenes/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scenes/Stage.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/models/Material.material" type="Material" id=4]
 [ext_resource path="res://assets/scenes/UI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/music/Blammed_Inst.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/music/Blammed_Voices.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/scripts/Instrumentals.gd" type="Script" id=8]
 [ext_resource path="res://assets/scripts/Main.gd" type="Script" id=9]
-[ext_resource path="res://assets/models/3d fnf buildings.gd" type="Script" id=10]
-[ext_resource path="res://assets/scenes/Cube022.gd" type="Script" id=11]
 [ext_resource path="res://assets/scenes/Label.gd" type="Script" id=12]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -47,6 +44,11 @@ graph_offset = Vector2( -232, 75 )
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 
+[sub_resource type="PlaneMesh" id=4]
+size = Vector2( 4.06, 3.92 )
+
+[sub_resource type="SpatialMaterial" id=5]
+
 [node name="Main" type="Spatial" groups=[
 "Song Time Recievers",
 ]]
@@ -57,9 +59,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.667, 8.71 )
 current = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
 
 [node name="Sprite3D" parent="Player" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.095, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.095, 0 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5, 0, 0 )
@@ -71,33 +74,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.279, 6.2612 )
 shadow_bias = 0.0
 shadow_contact = 0.93
 omni_range = 35.3842
-
-[node name="3d fnf buildings" parent="Stage" index="4" groups=[
-"Player Input Reciever",
-]]
-transform = Transform( 35.9056, 0, 0, 0, 35.9056, 0, 0, 0, 35.9056, 0, -4.79622, -69.3358 )
-script = ExtResource( 10 )
-
-[node name="Cube022" parent="Stage/3d fnf buildings" index="0" groups=[
-"Enemy Input Recievers",
-"Player Input Reciever",
-]]
-script = ExtResource( 11 )
-
-[node name="Cube003" parent="Stage/3d fnf train and stuff" index="7"]
-material/0 = ExtResource( 4 )
-
-[node name="Cube004" parent="Stage/3d fnf train and stuff" index="8"]
-visible = false
-
-[node name="Cube005" parent="Stage/3d fnf train and stuff" index="9"]
-material/0 = ExtResource( 4 )
-
-[node name="Cube006" parent="Stage/3d fnf train and stuff" index="10"]
-visible = false
-
-[node name="Cube007" parent="Stage/3d fnf train and stuff" index="11"]
-visible = false
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87143, 2.8225, 0 )
@@ -150,8 +126,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CSGMesh" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5.0062, 2.08722, -0.277259 )
+visible = false
+mesh = SubResource( 4 )
+material = SubResource( 5 )
+
 [editable path="Player"]
 [editable path="Stage"]
-[editable path="Stage/3d fnf buildings"]
-[editable path="Stage/3d fnf train and stuff"]
+[editable path="Stage/roof ground bois"]
+[editable path="Stage/cool train"]
+[editable path="Stage/rail doorway htingies"]
+[editable path="Stage/UUUUGH BUILDINGS UGH"]
+[editable path="Stage/UUUUGH BUILDINGS UGH3"]
+[editable path="Stage/UUUUGH BUILDINGS UGH2"]
+[editable path="Stage/UUUUGH BUILDINGS UGH4"]
 [editable path="UI"]

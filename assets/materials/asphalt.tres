@@ -54,7 +54,7 @@ constant = 0.7
 
 [sub_resource type="OpenSimplexNoise" id=18]
 octaves = 5
-period = 92.4
+period = 31.1
 persistence = 0.173
 
 [sub_resource type="NoiseTexture" id=19]
@@ -171,7 +171,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -226, -975 )
+graph_offset = Vector2( -858.017, -772.63 )
 nodes/fragment/0/position = Vector2( 1660, -340 )
 nodes/fragment/2/node = SubResource( 11 )
 nodes/fragment/2/position = Vector2( 1380, -640 )

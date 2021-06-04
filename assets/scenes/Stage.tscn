@@ -1,29 +1,38 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/materials/asphalt.tres" type="Material" id=1]
-[ext_resource path="res://assets/models/3d fnf buildings.glb" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/roof ground bois.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/UUUUGH BUILDINGS UGH.glb" type="PackedScene" id=3]
 [ext_resource path="res://assets/scenes/Partner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/models/3d fnf train and stuff.glb" type="PackedScene" id=5]
+[ext_resource path="res://assets/models/building_base.tres" type="Material" id=5]
+[ext_resource path="res://assets/models/rail doorway htingies.glb" type="PackedScene" id=6]
+[ext_resource path="res://assets/models/rail road.glb" type="PackedScene" id=7]
+[ext_resource path="res://assets/models/cool train.glb" type="PackedScene" id=8]
+[ext_resource path="res://assets/models/UUUUGH BUILDINGS UGH.gd" type="Script" id=9]
+[ext_resource path="res://assets/models/building_windows_1.tres" type="Material" id=10]
+[ext_resource path="res://assets/models/building_windows_2.tres" type="Material" id=11]
+[ext_resource path="res://assets/textures/[4K]Concrete06/Concrete06_col.jpg" type="Texture" id=12]
+[ext_resource path="res://assets/textures/[4K]Concrete06/Concrete06_nrm.jpg" type="Texture" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 1 )
 size = Vector2( 30, 30 )
 
 [sub_resource type="ProceduralSky" id=2]
-sky_top_color = Color( 0.0352941, 0.00392157, 0.0352941, 1 )
-sky_horizon_color = Color( 0.419608, 0.0588235, 0.423529, 1 )
+sky_top_color = Color( 0.16, 0.0176, 0.16, 1 )
+sky_horizon_color = Color( 0.67, 0.0938, 0.3819, 1 )
 ground_bottom_color = Color( 0.211765, 0.156863, 0.211765, 1 )
 ground_horizon_color = Color( 0.266667, 0.00392157, 0.235294, 1 )
 sun_color = Color( 1, 0.72549, 0, 1 )
 sun_latitude = 27.55
-sun_longitude = 14.9
+sun_longitude = 4.84
 sun_angle_max = 13.1
 
 [sub_resource type="Environment" id=3]
 background_mode = 2
 background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.0
+ambient_light_energy = 0.4
 ss_reflections_enabled = true
 ss_reflections_max_steps = 256
 ss_reflections_fade_out = 0.784584
@@ -38,6 +47,143 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
+[sub_resource type="VisualShaderNodeTexture" id=9]
+texture = ExtResource( 12 )
+
+[sub_resource type="VisualShaderNodeInput" id=10]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=11]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=12]
+constant = 10.0
+
+[sub_resource type="VisualShaderNodeTexture" id=13]
+texture = ExtResource( 14 )
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=14]
+constant = 0.2
+
+[sub_resource type="VisualShader" id=7]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_6;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// Scalar:5
+	float n_out5p0 = 10.000000;
+
+// VectorOp:4
+	vec3 n_out4p0 = n_out3p0 * vec3(n_out5p0);
+
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, n_out4p0.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// Texture:6
+	vec4 tex_frg_6_read = texture(tex_frg_6, n_out4p0.xy);
+	vec3 n_out6p0 = tex_frg_6_read.rgb;
+	float n_out6p1 = tex_frg_6_read.a;
+
+// Scalar:7
+	float n_out7p0 = 0.200000;
+
+// Output:0
+	ALBEDO = n_out2p0;
+	NORMALMAP = n_out6p0;
+	NORMALMAP_DEPTH = n_out7p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -357.017, 272 )
+nodes/fragment/2/node = SubResource( 9 )
+nodes/fragment/2/position = Vector2( 60, 180 )
+nodes/fragment/3/node = SubResource( 10 )
+nodes/fragment/3/position = Vector2( -560, 280 )
+nodes/fragment/4/node = SubResource( 11 )
+nodes/fragment/4/position = Vector2( -340, 260 )
+nodes/fragment/5/node = SubResource( 12 )
+nodes/fragment/5/position = Vector2( -520, 360 )
+nodes/fragment/6/node = SubResource( 13 )
+nodes/fragment/6/position = Vector2( -100, 320 )
+nodes/fragment/7/node = SubResource( 14 )
+nodes/fragment/7/position = Vector2( 140, 460 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0, 3, 0, 4, 0, 5, 0, 4, 1, 4, 0, 2, 0, 6, 0, 0, 8, 4, 0, 6, 0, 7, 0, 0, 9 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=15]
+constant = Color( 0.727904, 0.301224, 0, 1 )
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=18]
+constant = 1.0
+
+[sub_resource type="VisualShader" id=16]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:2
+	vec3 n_out2p0 = vec3(0.727904, 0.301224, 0.000000);
+	float n_out2p1 = 1.000000;
+
+// Output:0
+	ALBEDO = n_out2p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -119.652, 387.5 )
+nodes/fragment/2/node = SubResource( 15 )
+nodes/fragment/2/position = Vector2( 40, 80 )
+nodes/fragment/3/node = SubResource( 18 )
+nodes/fragment/3/position = Vector2( 20, 280 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.490196, 0.184314, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=19]
+metallic = 1.0
+
 [node name="Stage" type="Spatial"]
 
 [node name="CSGMesh" type="CSGMesh" parent="."]
@@ -45,7 +191,8 @@ visible = false
 mesh = SubResource( 1 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.50306, 4.8644 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8581, 4.8644 )
+light_color = Color( 0.858824, 0.407843, 0.937255, 1 )
 shadow_enabled = true
 shadow_reverse_cull_face = true
 omni_range = 40.0312
@@ -59,33 +206,125 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37773, 0 )
 visible = false
 material = SubResource( 4 )
 
-[node name="3d fnf buildings" parent="." instance=ExtResource( 3 )]
-transform = Transform( 33.4104, 0, 0, 0, 33.4104, 0, 0, 0, 33.4104, 0, 5.75398, -56.1448 )
-
-[node name="3d fnf buildings2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 27.3649, 0, -19.1682, 0, 33.4104, 0, 19.1682, 0, 27.3649, 107.515, 5.75398, -39.6032 )
-
-[node name="3d fnf buildings3" parent="." instance=ExtResource( 3 )]
-transform = Transform( 24.3248, 0, 22.9033, 0, 33.4104, 0, -22.9033, 0, 24.3248, -113.121, 5.75397, -54.4572 )
-
 [node name="Partner" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65581 )
 
-[node name="3d fnf train and stuff" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1.1988, 0, 0, 0, 1.1988, 0, 0, 0, 1.1988, -0.0268135, 0.00011158, 4.29128 )
+[node name="roof ground bois" parent="." instance=ExtResource( 2 )]
 
-[node name="Cube" parent="3d fnf train and stuff" index="0"]
-visible = false
+[node name="Ground" parent="roof ground bois" index="0"]
 material/0 = ExtResource( 1 )
 
-[node name="Cube001" parent="3d fnf train and stuff" index="3"]
+[node name="Curb" parent="roof ground bois" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0545053, -0.0366914, -4.76861 )
+material/0 = SubResource( 8 )
+
+[node name="cool train" parent="." instance=ExtResource( 8 )]
 visible = false
 
-[node name="Cube002" parent="3d fnf train and stuff" index="5"]
+[node name="rail doorway htingies" parent="." instance=ExtResource( 6 )]
+
+[node name="Pillars" parent="rail doorway htingies" index="0"]
+material/0 = SubResource( 17 )
+
+[node name="Cabel" parent="rail doorway htingies" index="1"]
+material/0 = SubResource( 6 )
+
+[node name="rail road" parent="." instance=ExtResource( 7 )]
+
+[node name="Rail Road" parent="rail road" index="0"]
+material/0 = SubResource( 20 )
+
+[node name="Rails" parent="rail road" index="1"]
+material/0 = SubResource( 19 )
+
+[node name="UUUUGH BUILDINGS UGH" parent="." groups=[
+"Enemy Input Recievers",
+"Player Input Reciever",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00158024, 1.80979, -28.6177 )
+script = ExtResource( 9 )
+
+[node name="Cube003" parent="UUUUGH BUILDINGS UGH" index="0"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+material/2 = ExtResource( 11 )
+
+[node name="Cube004" parent="UUUUGH BUILDINGS UGH" index="1"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+
+[node name="Cube005" parent="UUUUGH BUILDINGS UGH" index="2"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 11 )
+
+[node name="UUUUGH BUILDINGS UGH3" parent="." groups=[
+"Enemy Input Recievers",
+"Player Input Reciever",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, -8.74228e-08, 0, 8.74228e-08, 1, 0, 0, 0, -1, 0.00158024, 1.80979, 3.81528 )
+script = ExtResource( 9 )
+
+[node name="Cube003" parent="UUUUGH BUILDINGS UGH3" index="0"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+material/2 = ExtResource( 11 )
+
+[node name="Cube004" parent="UUUUGH BUILDINGS UGH3" index="1"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+
+[node name="Cube005" parent="UUUUGH BUILDINGS UGH3" index="2"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 11 )
+
+[node name="UUUUGH BUILDINGS UGH2" parent="." groups=[
+"Enemy Input Recievers",
+"Player Input Reciever",
+] instance=ExtResource( 3 )]
+transform = Transform( 0.475377, 0, 0, 0, 0.475377, 0, 0, 0, 0.475377, 0.00158024, -7.18088, -18.2105 )
+script = ExtResource( 9 )
+
+[node name="Cube003" parent="UUUUGH BUILDINGS UGH2" index="0"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+material/2 = ExtResource( 11 )
+
+[node name="Cube004" parent="UUUUGH BUILDINGS UGH2" index="1"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+
+[node name="Cube005" parent="UUUUGH BUILDINGS UGH2" index="2"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 11 )
+
+[node name="UUUUGH BUILDINGS UGH4" parent="." groups=[
+"Enemy Input Recievers",
+"Player Input Reciever",
+] instance=ExtResource( 3 )]
+transform = Transform( 0.0927577, 0, -0.466239, 0, 0.475377, 0, 0.466239, 0, 0.0927577, 37.083, -7.18088, -18.2105 )
+script = ExtResource( 9 )
+
+[node name="Cube003" parent="UUUUGH BUILDINGS UGH4" index="0"]
 visible = false
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
+material/2 = ExtResource( 11 )
 
-[node name="Plane" parent="3d fnf train and stuff" index="6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700951, 0.0466337, -0.00484467 )
-material/0 = ExtResource( 1 )
+[node name="Cube004" parent="UUUUGH BUILDINGS UGH4" index="1"]
+transform = Transform( 0.910319, 0, 1.3158, 0, 1.6, 0, -1.3158, 0, 0.910319, 49.2675, 35.2259, -46.6576 )
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 10 )
 
-[editable path="3d fnf train and stuff"]
+[node name="Cube005" parent="UUUUGH BUILDINGS UGH4" index="2"]
+visible = false
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 11 )
+
+[editable path="roof ground bois"]
+[editable path="cool train"]
+[editable path="rail doorway htingies"]
+[editable path="rail road"]
+[editable path="UUUUGH BUILDINGS UGH"]
+[editable path="UUUUGH BUILDINGS UGH3"]
+[editable path="UUUUGH BUILDINGS UGH2"]
+[editable path="UUUUGH BUILDINGS UGH4"]

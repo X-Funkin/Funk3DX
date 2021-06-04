@@ -9,14 +9,17 @@ extends AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
+var boppin = true
 func recieve_beat(N, t):
 	if N%2:
-		if !is_playing():
+		if !is_playing() or boppin:
+			boppin = true
+			stop()
 			play("player idle dance")
 		
 func recieve_player_hit(ms, note_n):
 	print("player animation resciever hit boiis")
+	boppin = false
 	stop()
 	match note_n:
 		0:

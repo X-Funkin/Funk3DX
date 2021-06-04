@@ -81,25 +81,27 @@ func _process(delta):
 		if enemy_hit:
 			enemy_input.pressed = false
 			Input.parse_input_event(enemy_input)
+			print("okays we have the thingy ig hopefully enemy inputsss")
 		enemy_input.pressed = true
 		Input.parse_input_event(enemy_input)
 		enemy_hit = true
 		get_tree().call_group("Enemy Hit Recievers", "recieve_enemy_hit", 0, note_type)
 		despawn()
-	if time_ms>hit_time+30 and enemy_hit:
+	if time_ms>hit_time+90 and enemy_hit:
 		enemy_hit = false
 		var enemy_input = InputEventAction.new()
 		match note_type:
 			0:
-				enemy_input.action = "note_left_2"
+				enemy_input.action = "left_note_2"
 			1:
-				enemy_input.action = "note_down_2"
+				enemy_input.action = "down_note_2"
 			2:
-				enemy_input.action = "note_up_2"
+				enemy_input.action = "up_note_2"
 			3:
-				enemy_input.action = "note_right_2"
+				enemy_input.action = "right_note_2"
 		enemy_input.pressed = false
 		Input.parse_input_event(enemy_input)
+		print("okays we have the thingy ig hopefully enemy inputsss")
 	if time_ms<hit_time and !active:
 			print("reactiveated lol ", hit_time, " ", time_ms)
 			spawn()

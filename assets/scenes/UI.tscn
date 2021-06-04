@@ -5,6 +5,7 @@
 [node name="UI" type="Spatial"]
 
 [node name="Player Track" parent="." groups=[
+"Player Hit Recievers",
 "Player Input Reciever",
 "Player Track",
 ] instance=ExtResource( 1 )]
@@ -12,6 +13,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, 0 )
 player_track = true
 
 [node name="Enemy Track" parent="." groups=[
+"Enemy Hit Recievers",
+"Enemy Input Recievers",
 "Enemy Track",
 ] instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7, 0 )
