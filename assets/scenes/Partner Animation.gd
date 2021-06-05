@@ -33,6 +33,11 @@ func cheer():
 	boppin = false
 	stop()
 	play("Partner Cheer")
+
+func cheer_short():
+	boppin = false
+	stop()
+	play("Partner Cheer Short")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

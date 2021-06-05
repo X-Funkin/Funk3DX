@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/materials/asphalt.tres" type="Material" id=1]
 [ext_resource path="res://assets/models/roof ground bois.glb" type="PackedScene" id=2]
@@ -12,11 +12,36 @@
 [ext_resource path="res://assets/models/building_windows_1.tres" type="Material" id=10]
 [ext_resource path="res://assets/models/building_windows_2.tres" type="Material" id=11]
 [ext_resource path="res://assets/textures/[4K]Concrete06/Concrete06_col.jpg" type="Texture" id=12]
+[ext_resource path="res://assets/scenes/PlayerSpotLight.gd" type="Script" id=13]
 [ext_resource path="res://assets/textures/[4K]Concrete06/Concrete06_nrm.jpg" type="Texture" id=14]
+[ext_resource path="res://assets/scenes/EnemySpotLight.gd" type="Script" id=15]
+[ext_resource path="res://assets/scenes/Enviroment Animation.gd" type="Script" id=16]
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 1 )
 size = Vector2( 30, 30 )
+
+[sub_resource type="ParticlesMaterial" id=23]
+emission_shape = 1
+emission_sphere_radius = 100.0
+
+[sub_resource type="ParticlesMaterial" id=24]
+next_pass = SubResource( 23 )
+emission_shape = 1
+emission_sphere_radius = 100.0
+gravity = Vector3( 0, 0, 0 )
+scale = 0.0
+scale_random = 0.3
+
+[sub_resource type="SpatialMaterial" id=25]
+emission_enabled = true
+emission = Color( 0.933333, 0.705882, 0.172549, 1 )
+emission_energy = 3.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=26]
+material = SubResource( 25 )
 
 [sub_resource type="ProceduralSky" id=2]
 sky_top_color = Color( 0.16, 0.0176, 0.16, 1 )
@@ -33,12 +58,47 @@ background_mode = 2
 background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.4
+tonemap_exposure = 0.0
 ss_reflections_enabled = true
 ss_reflections_max_steps = 256
 ss_reflections_fade_out = 0.784584
 glow_enabled = true
 glow_blend_mode = 1
 glow_bicubic_upscale = true
+
+[sub_resource type="Animation" id=27]
+resource_name = "Fade In"
+length = 0.583333
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:tonemap_exposure")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.583333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Fade Out"
+length = 0.583333
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:tonemap_exposure")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.583333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [sub_resource type="SpatialMaterial" id=4]
 emission_enabled = true
@@ -198,8 +258,50 @@ shadow_reverse_cull_face = true
 omni_range = 40.0312
 omni_shadow_mode = 0
 
+[node name="SpotLight" type="SpotLight" parent="." groups=[
+"Player Input Reciever",
+]]
+transform = Transform( 0.369974, 0, 0.929042, 0, 1, 0, -0.929042, 0, 0.369974, 20.202, 5.03911, 10.0432 )
+light_color = Color( 0.176471, 0.360784, 1, 1 )
+spot_range = 36.4041
+spot_angle = 54.9687
+script = ExtResource( 13 )
+
+[node name="SpotLight2" type="SpotLight" parent="." groups=[
+"Enemy Input Recievers",
+]]
+transform = Transform( 0.369974, 0, -0.929042, 0, 1, 0, 0.929042, 0, 0.369974, -20.202, 5.039, 10.043 )
+light_color = Color( 1, 0.666667, 0.129412, 1 )
+spot_range = 36.4041
+spot_angle = 54.9687
+script = ExtResource( 15 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.996434, -0.0390247, 0.0748062, 0, 0.886608, 0.462523, -0.0843736, 0.460873, -0.883446, 0, 13.496, 0 )
+light_color = Color( 0.68, 0.589333, 0, 1 )
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1.0841, -0.114381, -0.14713, 0, 0.86844, -0.675138, 0.18636, 0.665378, 0.855886, 0, 0, 0 )
+amount = 1500
+lifetime = 600.0
+explosiveness = 1.0
+randomness = 1.0
+visibility_aabb = AABB( -13.5771, -10.3843, -11.2662, 27.1542, 20.7686, 22.5323 )
+draw_order = 2
+process_material = SubResource( 24 )
+draw_pass_1 = SubResource( 26 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
+
+[node name="Enviroment Animation" type="AnimationPlayer" parent="WorldEnvironment" groups=[
+"Animation Event Recievers",
+]]
+"anims/Fade In" = SubResource( 27 )
+"anims/Fade Out" = SubResource( 28 )
+script = ExtResource( 16 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37773, 0 )

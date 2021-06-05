@@ -41,8 +41,12 @@ func recieve_enemy_hit(ms, note_n):
 func recieve_enemy_input(event):
 	cast_input(event)
 
-
+var current_note = 0
 func generateNote(noteData):
+#	current_note = (current_note+1)%4
+#	noteData[1] = (current_note+1)%4
+#	$"Note Transforms/Notes".call("createNote", noteData)
+#	noteData[1] = (current_note+2)%4
 	$"Note Transforms/Notes".call("createNote", noteData)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

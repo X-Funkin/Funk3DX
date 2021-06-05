@@ -35,7 +35,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "player note down"
-length = 1.20833
+length = 0.583334
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture:region")
@@ -88,12 +88,12 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, 7 ) ]
+"values": [ Vector2( -21, 7 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "player note right"
-length = 2.54167
+length = 0.583334
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture:region")
@@ -114,10 +114,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0833334 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 7 ) ]
+"values": [ Vector2( 50, 7 ), Vector2( 50, 7 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -143,10 +143,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
+"times": PoolRealArray( 0, 0.0833334 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 28 ), Vector2( 0, 26 ) ]
+"values": [ Vector2( 50, 28 ), Vector2( 50, 26 ) ]
 }
 
 [sub_resource type="VisualShaderNodeTexture" id=6]
@@ -233,7 +233,7 @@ alpha_cut = 2
 texture = ExtResource( 1 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28432, 2.38113, -1.71827 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8197, -1.00865, -1.71827 )
 visible = false
 
 [node name="OmniLight" type="OmniLight" parent="."]

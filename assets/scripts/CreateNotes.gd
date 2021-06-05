@@ -16,8 +16,8 @@ func _ready():
 
 func createNote(noteData):
 #	print("creating note ", noteData)
-	#var noteType = int(noteData[1])%4
-	var noteType = int(randf()*4.0)%4
+	var noteType = int(noteData[1])%4
+	#var noteType = int(randf()*4.0)%4
 #	print(noteType)
 	var player_track = get_parent().get_parent().player_track
 	match noteType:
