@@ -15,7 +15,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Funk 3DX"
-run/main_scene="res://assets/scenes/Main.tscn"
+config/description="3d arrow game in 3d boiiiis"
+run/main_scene="res://Main Menu.tscn"
 config/icon="res://icon.png"
 
 [display]

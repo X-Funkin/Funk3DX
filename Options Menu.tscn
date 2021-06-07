@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://OptionButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Options Menu.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/pixel.otf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 42
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 42
+font_data = SubResource( 1 )
+
+[node name="Options Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Options" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_left = 207.0
+margin_top = 186.0
+margin_right = 817.0
+margin_bottom = 413.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/Options"]
+margin_right = 610.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 2 )
+text = "         Options         
+"
+align = 1
+
+[node name="Label2" type="Label" parent="ColorRect/CenterContainer/Options"]
+margin_top = 125.0
+margin_right = 610.0
+margin_bottom = 175.0
+custom_fonts/font = SubResource( 3 )
+text = "Inputs"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/Options"]
+margin_top = 179.0
+margin_right = 610.0
+margin_bottom = 227.0
+alignment = 1
+
+[node name="Option" type="VBoxContainer" parent="ColorRect/CenterContainer/Options/HBoxContainer"]
+margin_left = 100.0
+margin_right = 510.0
+margin_bottom = 48.0
+alignment = 1
+
+[node name="Left" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Option"]
+visible = false
+margin_right = 105.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 3 )
+text = "Left"
+
+[node name="Left2" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Option"]
+visible = false
+margin_right = 105.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 3 )
+text = "Left"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="ColorRect/CenterContainer/Options/HBoxContainer/Option"]
+margin_right = 410.0
+margin_bottom = 48.0
+
+[node name="Button" parent="ColorRect/CenterContainer/Options/HBoxContainer/Option/HSplitContainer" instance=ExtResource( 1 )]
+align = 0
+plaintextleft = "Left"
+plaintextright = "D"
+
+[node name="Button2" parent="ColorRect/CenterContainer/Options/HBoxContainer/Option/HSplitContainer" instance=ExtResource( 1 )]
+margin_left = 211.0
+margin_right = 410.0
+align = 2
+plaintextleft = "Left"
+plaintextright = "D"
+
+[node name="Value" type="VBoxContainer" parent="ColorRect/CenterContainer/Options/HBoxContainer"]
+visible = false
+margin_left = 109.0
+margin_right = 151.0
+margin_bottom = 311.0
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Value"]
+margin_right = 42.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 4 )
+align = 2
+
+[node name="D" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Value"]
+margin_top = 63.0
+margin_right = 42.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 4 )
+text = "D"
+align = 2
+
+[node name="D2" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Value"]
+margin_top = 126.0
+margin_right = 42.0
+margin_bottom = 185.0
+custom_fonts/font = SubResource( 4 )
+text = "F"
+align = 2
+
+[node name="D3" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Value"]
+margin_top = 189.0
+margin_right = 42.0
+margin_bottom = 248.0
+custom_fonts/font = SubResource( 4 )
+text = "J"
+align = 2
+
+[node name="D4" type="Label" parent="ColorRect/CenterContainer/Options/HBoxContainer/Value"]
+margin_top = 252.0
+margin_right = 42.0
+margin_bottom = 311.0
+custom_fonts/font = SubResource( 4 )
+text = "K"
+align = 2
